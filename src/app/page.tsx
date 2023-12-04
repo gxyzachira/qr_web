@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"; // This is a client component
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, EventHandler, MouseEvent, useState } from "react";
 import "./globals.css";
 
 ///event preventDefault()สำคัญถ้าไม่มีเว็บมันจะรีเฟรชทุกครั้งที่ป้อนinputเข้าไปแล้วกดsubmit มันจะไม่เก็บinputไว้/***
@@ -10,16 +11,13 @@ export default function HomePage() {
   const [colorDark,setColorDark] = useState('#000000')
   const [colorLight,setColorLight] = useState('#ffffff')
   const [errorCorrection, setErrorCorrection] = useState("Medium");
-  function saveSize(e) {
+  
+  function saveSize(e: ChangeEvent<HTMLInputElement>) {
     setSize(parseInt(e.target.value));
   }
 
-
   let removeColorDark = colorDark.replace('#','')
   
-  function defaultText(item){
-    ()=>setText(item.text)
-  }
   return (
     <div className="main-bg">
 
@@ -35,7 +33,7 @@ export default function HomePage() {
           <div className="QR-img">
             <div>
               {text !== ''? <img src={`https://quickchart.io/qr?text=${text}&size=${size}&margin=${margin}
-                                &dark=${removeColorDark}&light=${colorLight.replace('#','')}&ecLevel=${errorCorrection}`} /> : defaultText()}
+                                &dark=${removeColorDark}&light=${colorLight.replace('#','')}&ecLevel=${errorCorrection}`} /> : ""}
             </div>
           </div>
 
